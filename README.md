@@ -16,3 +16,7 @@
 6. flask run
 
 7. config.py file
+
+8. bootstarp files
+
+9. 
