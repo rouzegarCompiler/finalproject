@@ -2,28 +2,32 @@
 
 {% block content_bp %}
 <div class="container my-3">
-    <form action="{{ url_for('user.register') }}" method="post">
-        {{ form.hidden_tag() }}
+    <div class="row">
+        <div class="col-lg-6 col-12 mx-auto">
+            <form action="{{ url_for('user.register') }}" method="post">
+                {{ form.hidden_tag() }}
+                
+                {{ form.fname.label(class='form-label') }}
+                {{ form.fname(class='form-control') }}
+                
+                {{ form.lname.label(class='form-label') }}
+                {{ form.lname(class='form-control') }}
+                
+                {{ form.email.label(class='form-label') }}
+                {{ form.email(class='form-control') }}
+                
+                {{ form.password.label(class='form-label') }}
+                {{ form.password(class='form-control') }}
         
-        {{ form.fname.label() }}
-        {{ form.fname() }} <br>
+                {{ form.password_confirm.label(class='form-label') }}
+                {{ form.password_confirm(class='form-control') }} <br>
         
-        {{ form.lname.label() }}
-        {{ form.lname() }} <br>
+                {{ form.gender.label(class='form-label') }}
+                {{ form.gender(style='list-style:none;') }}
         
-        {{ form.email.label() }}
-        {{ form.email() }} <br>
-        
-        {{ form.password.label() }}
-        {{ form.password() }} <br>
-
-        {{ form.password_confirm.label() }}
-        {{ form.password_confirm() }} <br>
-
-        {{ form.gender.label() }}
-        {{ form.gender() }}
-
-        {{ form.submit() }}
-    </form>
+                {{ form.submit(class='btn btn-lg btn-primary') }}
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
