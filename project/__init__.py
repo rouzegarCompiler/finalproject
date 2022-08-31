@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # blueprints
-from mod_user import user
+from project.mod_user import user
 
 # register blueprints
 app.register_blueprint(user)
