@@ -7,23 +7,69 @@
             <form action="{{ url_for('user.register') }}" method="post">
                 {{ form.hidden_tag() }}
                 
-                {{ form.fname.label(class='form-label') }}
-                {{ form.fname(class='form-control') }}
+                <div class="mb-1">
+                    {{ form.fname.label(class='form-label') }}
+                    {{ form.fname(class='form-control') }}
+                    {% with errors = form.fname.errors %}
+                    {% if errors %}
+                        {% for error in errors %}
+                        <div class="form-text text-danger">{{ error }}</div>
+                        {% endfor %}    
+                    {% endif %}
+                    {% endwith %}
+                </div>
                 
-                {{ form.lname.label(class='form-label') }}
-                {{ form.lname(class='form-control') }}
+                <div class="mb-1">
+                    {{ form.lname.label(class='form-label') }}
+                    {{ form.lname(class='form-control') }}
+                    {% with errors = form.lname.errors %}
+                    {% if errors %}
+                        {% for error in errors %}
+                        <div class="form-text text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
                 
-                {{ form.email.label(class='form-label') }}
-                {{ form.email(class='form-control') }}
+                <div class="mb-1">
+                    {{ form.email.label(class='form-label') }}
+                    {{ form.email(class='form-control') }}
+                    {% with errors = form.email.errors %}
+                    {% if errors %}
+                        {% for error in errors %}
+                        <div class="form-text text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
                 
-                {{ form.password.label(class='form-label') }}
-                {{ form.password(class='form-control') }}
+                <div class="mb-1">
+                    {{ form.password.label(class='form-label') }}
+                    {{ form.password(class='form-control') }}
+                    {% with errors = form.password.errors %}
+                    {% if errors %}
+                        {% for error in errors %}
+                        <div class="form-text text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
         
-                {{ form.password_confirm.label(class='form-label') }}
-                {{ form.password_confirm(class='form-control') }} <br>
+                <div class="mb-1">
+                    {{ form.password_confirm.label(class='form-label') }}
+                    {{ form.password_confirm(class='form-control') }}
+                    {% with errors = form.password_confirm.errors %}
+                    {% if errors %}
+                        {% for error in errors %}
+                        <div class="form-text text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
         
                 {{ form.gender.label(class='form-label') }}
-                {{ form.gender(style='list-style:none;') }}
+                {{ form.gender(style='list-style:none;') }} 
+                <br>
         
                 {{ form.submit(class='btn btn-lg btn-primary') }}
             </form>

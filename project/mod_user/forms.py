@@ -35,3 +35,25 @@ class RegisterForm(FlaskForm):
     def validate_email(self, email):
         if User.query.filter(User.email == email.data).first():
             raise ValidationError('Email duplicated .Try another email .')
+
+class LoginForm(FlaskForm):
+    email = EmailField(
+        label='Username (email)',
+        validators=[DataRequired(), Email()]
+    )
+    password = PasswordField(
+        label='Password',
+        validators=[DataRequired()]
+    )
+    submit = SubmitField(label='Login')
+
+    def validate_email(self, email):
+        if not User.query.filter(User.email == email.data).first():
+            raise ValidationError('Email not found .')
+
+    def validate_password(self,password):
+        user = User.query.filter(User.email == self.email.data).first()
+        if user:
+            if not user.check_password(password.data):
+                raise ValidationError('Invalid password .')
+
