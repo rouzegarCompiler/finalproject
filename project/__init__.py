@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from .config import Development,Production
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -8,6 +9,7 @@ app.config.from_object(Development)
 
 # initilize dependencies
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # blueprints
 from mod_user import user
