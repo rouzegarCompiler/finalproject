@@ -1,6 +1,9 @@
 import os
 
 class Config:
+    # For Flask Application
+    SECRET_KEY = 'Secret_key'
+
     # For Flask_SQLALCHEMY
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

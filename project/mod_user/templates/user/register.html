@@ -1,0 +1,29 @@
+{% extends 'user/base.html' %}
+
+{% block content_bp %}
+<div class="container my-3">
+    <form action="{{ url_for('user.register') }}" method="post">
+        {{ form.hidden_tag() }}
+        
+        {{ form.fname.label() }}
+        {{ form.fname() }} <br>
+        
+        {{ form.lname.label() }}
+        {{ form.lname() }} <br>
+        
+        {{ form.email.label() }}
+        {{ form.email() }} <br>
+        
+        {{ form.password.label() }}
+        {{ form.password() }} <br>
+
+        {{ form.password_confirm.label() }}
+        {{ form.password_confirm() }} <br>
+
+        {{ form.gender.label() }}
+        {{ form.gender() }}
+
+        {{ form.submit() }}
+    </form>
+</div>
+{% endblock %}
