@@ -1,6 +1,6 @@
 from flask import render_template, abort, flash, redirect, url_for
 
-from flask_login import login_required
+from flask_login import login_required, logout_user
 
 from http import HTTPStatus
 
@@ -18,6 +18,15 @@ from ..mod_user.models import User
 @admin_only
 def index():
     return render_template('admin/index.html', title='Admin Home')
+
+
+@admin.route('/logout')
+@login_required
+@admin_only
+def logout():
+    logout_user()
+    flash('You logged out successfully .', category='warning')
+    return redirect(url_for('user.login'))
 
 
 @admin.route('/users')

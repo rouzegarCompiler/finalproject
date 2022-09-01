@@ -6,7 +6,7 @@ from . import user
 from .models import User
 from .forms import RegisterForm, LoginForm
 
-from flask_login import login_user, login_required
+from flask_login import login_user, login_required, logout_user
 
 
 @user.route('/')
@@ -50,3 +50,10 @@ def login():
         flash('Something wrong in your form. Correct these errors and sent form again',
               category='danger')
     return render_template('user/login.html', form=form, title='Login User')
+
+
+@user.route('/logout')
+def logout():
+    logout_user()
+    flash('You logged out successfully .', category='warning')
+    return redirect(url_for('user.login'))

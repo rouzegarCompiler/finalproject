@@ -28,8 +28,8 @@
                             {% if user.active %}
                             {% include 'admin/includes/deactivation_modal.html' %}
                             <button data-bs-toggle="modal" data-bs-target="#Deactivate-{{ user.id }}" class="btn btn-danger m-1">Deactivate</button>
-                            {% include 'admin/includes/activation_modal.html' %}
                             {% else %}
+                            {% include 'admin/includes/activation_modal.html' %}
                             <button data-bs-toggle="modal" data-bs-target="#Activate-{{ user.id }}" class="btn btn-success m-1">Activate</button>
                             {% endif %}
                             <button class="btn btn-primary">Report</button>

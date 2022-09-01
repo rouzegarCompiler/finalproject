@@ -9,12 +9,18 @@
 
         <div class="collapse navbar-collapse" id="usernavbar">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-2">
-                <li class="nav-item">
-                    <a href="{{ url_for('user.login') }}" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('user.register') }}" class="nav-link">Register</a>
-                </li>
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('user.logout') }}" class="nav-link">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('user.login') }}" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('user.register') }}" class="nav-link">Register</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
