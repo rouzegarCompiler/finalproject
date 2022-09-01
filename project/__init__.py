@@ -20,8 +20,10 @@ login.login_message_category = 'danger'
 
 # blueprints
 from project.mod_user import user
+from project.mod_admin import admin
 
 # register blueprints
 app.register_blueprint(user)
+app.register_blueprint(admin)
 
 from . import views
