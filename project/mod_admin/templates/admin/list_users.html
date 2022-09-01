@@ -1,0 +1,45 @@
+{% extends 'admin/base.html' %}
+
+{% block content_bp %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6 my-3 table-responsive mx-auto">
+            {% if users %}
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Action(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set index = namespace(value=0) %}
+                    {% for user in users %}
+                    {% set index.value = index.value + 1 %}
+                    <tr>
+                        <td>{{ index.value }}</td>
+                        <td>{{ user.fname }}</td>
+                        <td>{{ user.lname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% if user.active %}
+                            {% include 'admin/includes/deactivation_modal.html' %}
+                            <button data-bs-toggle="modal" data-bs-target="#Deactivate-{{ user.id }}" class="btn btn-danger m-1">Deactivate</button>
+                            {% include 'admin/includes/activation_modal.html' %}
+                            {% else %}
+                            <button data-bs-toggle="modal" data-bs-target="#Activate-{{ user.id }}" class="btn btn-success m-1">Activate</button>
+                            {% endif %}
+                            <button class="btn btn-primary">Report</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

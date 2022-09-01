@@ -1,3 +1,4 @@
+from email.policy import default
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from project import db
@@ -14,6 +15,7 @@ class User(db.Model,UserMixin):
     password_hash = db.Column(db.String(length=200), nullable=False)
     gender = db.Column(db.Integer(), nullable=False)
     role = db.Column(db.Integer(), nullable=False, default=0)
+    active = db.Column(db.Boolean(),nullable=False,default=False)
 
     @property
     def password(self):
