@@ -53,6 +53,7 @@ def login():
 
 
 @user.route('/logout')
+@login_required
 def logout():
     logout_user()
     flash('You logged out successfully .', category='warning')
