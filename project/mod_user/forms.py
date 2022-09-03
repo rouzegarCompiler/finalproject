@@ -75,3 +75,4 @@ class SqlInjectionLoginForm(SqlInjectionForm):
         label='Credentials in query string format', validators=[DataRequired()])
     form_number = IntegerField(
         label='Form number', validators=[DataRequired(),NumberRange(min=1)])
+    login_response = StringField(label='Part of login response', validators=[DataRequired()])

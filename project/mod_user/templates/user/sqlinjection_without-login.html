@@ -4,7 +4,7 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-lg-6 col-12 mx-auto">
-            <form action="{{ url_for('user.sqlinjection_login') }}" method="post">
+            <form action="{{ url_for('user.sqlinjection_nologin') }}" method="post">
                 {{ form.hidden_tag() }}
 
                 <div class="mb-1">
@@ -35,6 +35,19 @@
         
                 {{ form.submit(class='btn btn-primary') }}
             </form>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12 col-lg-6 mx-auto">
+            {% if errors %}
+                <div class="list-group">
+                {% for form_number,payload in errors %}
+                    <p class="list-group-item">Test form <b>{{ form_number }}</b> with payload <b>&lt;{{ payload }}&gt;</b></p>
+                {% endfor %}
+                </div>
+            {% else %}
+                <h2>No errors found !</h2>
+            {% endif %}
         </div>
     </div>
 </div>

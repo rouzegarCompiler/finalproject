@@ -1,13 +1,14 @@
 from flask import request, render_template, flash, redirect, url_for
 
+from flask_login import login_user, login_required, logout_user, current_user
+
 from project import db
 
 from . import user
 from .models import User
 from .forms import RegisterForm, LoginForm, SqlInjectionForm, SqlInjectionLoginForm
 from .utils import user_only, no_login
-
-from flask_login import login_user, login_required, logout_user, current_user
+from .sqlinjection import SqlInjection
 
 
 @user.route('/')
@@ -75,6 +76,18 @@ def logout():
 def sqlinjection_login():
     form = SqlInjectionLoginForm()
 
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            sqli = SqlInjection()
+            login = sqli.login(form.login_url.data, form.login_query.data, int(
+                form.form_number.data), form.login_response.data)
+            if login:
+                errors = sqli.run(form.url.data, form.base_url.data)
+                return render_template('user/sqlinjection_with-login.html', form=form, errors=errors, title='SQL Injection - With Login')
+            return redirect(url_for('user.sqlinjection_login'))
+        flash('Something wrong in your form. Correct these errors and sent form again',
+              category='danger')
+
     return render_template('user/sqlinjection_with-login.html', form=form, title='SQL Injection - With Login')
 
 
@@ -83,5 +96,13 @@ def sqlinjection_login():
 @user_only
 def sqlinjection_nologin():
     form = SqlInjectionForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            sqli = SqlInjection()
+            errors = sqli.run(form.url.data, form.base_url.data)
+            return render_template('user/sqlinjection_without-login.html', form=form, errors=errors, title='SQL Injection - Without Login')
+        flash('Something wrong in your form. Correct these errors and sent form again',
+              category='danger')
 
     return render_template('user/sqlinjection_without-login.html', form=form, title='SQL Injection - Without Login')
