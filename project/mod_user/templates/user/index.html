@@ -23,7 +23,8 @@
                     <h5 class="card-title">XSS</h5>
                     <p class="card-text">Cross-site scripting (XSS) is a type of security vulnerability that can be found in some web applications. XSS attacks enable attackers to inject client-side scripts into web pages viewed by other users.</p>
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-primary mb-1 mb-lg-0">XSS !</a>
+                        <a href="{{ url_for('user.xss_login') }}" class="btn btn-primary mb-1 mb-lg-0 " >XSS - With login !</a>
+                        <a href="{{ url_for('user.xss_nologin') }}" class="btn btn-primary mb-1 mb-lg-0 " >XSS - Without login !</a>
                     </div>
                 </div>
             </div>

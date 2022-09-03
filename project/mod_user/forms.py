@@ -62,14 +62,14 @@ class LoginForm(FlaskForm):
                 raise ValidationError('Invalid password .')
 
 
-class SqlInjectionForm(FlaskForm):
+class InjectionForm(FlaskForm):
     url = StringField(label='URL', validators=[DataRequired()])
     base_url = StringField(label='Base URL', validators=[DataRequired()])
     submit = SubmitField(label='Find Vulnerabilities',
                          validators=[DataRequired()])
 
 
-class SqlInjectionLoginForm(SqlInjectionForm):
+class InjectionLoginForm(InjectionForm):
     login_url = StringField(label='Login URL', validators=[DataRequired()])
     login_query = StringField(
         label='Credentials in query string format', validators=[DataRequired()])
