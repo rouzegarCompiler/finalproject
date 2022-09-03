@@ -4,7 +4,7 @@ from project import db
 
 from . import user
 from .models import User
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, SqlInjectionForm, SqlInjectionLoginForm
 
 from flask_login import login_user, login_required, logout_user
 
@@ -58,3 +58,18 @@ def logout():
     logout_user()
     flash('You logged out successfully .', category='warning')
     return redirect(url_for('user.login'))
+
+
+@user.route('/sqlinjection/with-login', methods=['GET', 'POST'])
+@login_required
+def sqlinjection_login():
+    form = SqlInjectionLoginForm()
+
+    return render_template('user/sqlinjection_with-login.html', form=form, title='SQL Injection - With Login')
+
+@user.route('/sqlinjection/without-login', methods=['GET', 'POST'])
+@login_required
+def sqlinjection_nologin():
+    form = SqlInjectionForm()
+
+    return render_template('user/sqlinjection_without-login.html', form=form, title='SQL Injection - Without Login')

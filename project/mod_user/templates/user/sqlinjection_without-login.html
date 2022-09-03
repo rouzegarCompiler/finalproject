@@ -4,13 +4,13 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-lg-6 col-12 mx-auto">
-            <form action="{{ url_for('user.login') }}" method="post">
+            <form action="{{ url_for('user.sqlinjection_login') }}" method="post">
                 {{ form.hidden_tag() }}
-                
+
                 <div class="mb-1">
-                    {{ form.email.label(class='form-label') }}
-                    {{ form.email(class='form-control') }}
-                    {% with errors = form.email.errors %}
+                    {{ form.url.label(class='form-label') }}
+                    {{ form.url(class='form-control',placeholder='Like localhost:6000/sqli') }} 
+                    {% with errors = form.url.errors %}
                     {% if errors %}
                         {% for error in errors %}
                         <div class="form-text text-danger">{{ error }}</div>
@@ -18,11 +18,11 @@
                     {% endif %}
                     {% endwith %}
                 </div>
-                
+
                 <div class="mb-1">
-                    {{ form.password.label(class='form-label') }}
-                    {{ form.password(class='form-control') }} 
-                    {% with errors = form.password.errors %}
+                    {{ form.base_url.label(class='form-label') }}
+                    {{ form.base_url(class='form-control') }} 
+                    {% with errors = form.base_url.errors %}
                     {% if errors %}
                         {% for error in errors %}
                         <div class="form-text text-danger">{{ error }}</div>
@@ -30,6 +30,7 @@
                     {% endif %}
                     {% endwith %}
                 </div>
+
                 <br>
         
                 {{ form.submit(class='btn btn-primary') }}
