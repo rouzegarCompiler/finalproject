@@ -5,17 +5,20 @@ from project import db
 from . import user
 from .models import User
 from .forms import RegisterForm, LoginForm, SqlInjectionForm, SqlInjectionLoginForm
+from .utils import user_only, no_login
 
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 
 
 @user.route('/')
 @login_required
+@user_only
 def index():
     return render_template('user/index.html', title='User Dashboard')
 
 
 @user.route('/register', methods=['GET', 'POST'])
+@no_login
 def register():
     form = RegisterForm()
 
@@ -40,12 +43,17 @@ def register():
 
 
 @user.route('/login', methods=['GET', 'POST'])
+@no_login
 def login():
+    if current_user.is_authenticated:
+        flash('You have already logined .', category='warning')
+        return redirect(url_for('user.index'))
+
     form = LoginForm()
     if request.method == 'POST':
         if form.validate_on_submit():
             user = User.query.filter(User.email == form.email.data).first()
-            login_user(user)
+            login_user(user, remember=form.remember_me.data)
             return redirect(url_for('user.index'))
         flash('Something wrong in your form. Correct these errors and sent form again',
               category='danger')
@@ -54,6 +62,7 @@ def login():
 
 @user.route('/logout')
 @login_required
+@user_only
 def logout():
     logout_user()
     flash('You logged out successfully .', category='warning')
@@ -62,13 +71,16 @@ def logout():
 
 @user.route('/sqlinjection/with-login', methods=['GET', 'POST'])
 @login_required
+@user_only
 def sqlinjection_login():
     form = SqlInjectionLoginForm()
 
     return render_template('user/sqlinjection_with-login.html', form=form, title='SQL Injection - With Login')
 
+
 @user.route('/sqlinjection/without-login', methods=['GET', 'POST'])
 @login_required
+@user_only
 def sqlinjection_nologin():
     form = SqlInjectionForm()
 
