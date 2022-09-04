@@ -7,7 +7,7 @@ from project import db
 from . import user
 from .models import User
 from .forms import RegisterForm, LoginForm, InjectionForm, InjectionLoginForm
-from .utils import user_only, no_login, add_attack
+from .utils import user_only, no_login, add_attack, active_only
 from .sqlinjection import SqlInjection
 from .xss import XSS
 
@@ -74,6 +74,7 @@ def logout():
 @user.route('/sqlinjection/with-login', methods=['GET', 'POST'])
 @login_required
 @user_only
+@active_only
 def sqlinjection_login():
     form = InjectionLoginForm()
 
@@ -84,7 +85,7 @@ def sqlinjection_login():
                 form.form_number.data), form.login_response.data)
             if login:
                 errors = sqli.run(form.url.data, form.base_url.data)
-                add_attack(type_='SQLi',url=form.url.data,use_login=True)
+                add_attack(type_='SQLi', url=form.url.data, use_login=True)
                 return render_template('user/injection_with-login.html', form=form, errors=errors, action=url_for('user.sqlinjection_login'), title='SQL Injection - With Login')
             return redirect(url_for('user.sqlinjection_login'))
         flash('Something wrong in your form. Correct these errors and sent form again',
@@ -96,6 +97,7 @@ def sqlinjection_login():
 @user.route('/sqlinjection/without-login', methods=['GET', 'POST'])
 @login_required
 @user_only
+@active_only
 def sqlinjection_nologin():
     form = InjectionForm()
 
@@ -103,7 +105,7 @@ def sqlinjection_nologin():
         if form.validate_on_submit():
             sqli = SqlInjection()
             errors = sqli.run(form.url.data, form.base_url.data)
-            add_attack(type_='SQLi',url=form.url.data,use_login=False)
+            add_attack(type_='SQLi', url=form.url.data, use_login=False)
             return render_template('user/injection_without-login.html', form=form, errors=errors, action=url_for('user.sqlinjection_nologin'), title='SQL Injection - Without Login')
         flash('Something wrong in your form. Correct these errors and sent form again',
               category='danger')
@@ -114,6 +116,7 @@ def sqlinjection_nologin():
 @user.route('/xss/with-login', methods=['GET', 'POST'])
 @login_required
 @user_only
+@active_only
 def xss_login():
     form = InjectionLoginForm()
 
@@ -124,7 +127,7 @@ def xss_login():
                 form.form_number.data), form.login_response.data)
             if login:
                 errors = xss.run(form.url.data, form.base_url.data)
-                add_attack(type_='XSS',url=form.url.data,use_login=True)
+                add_attack(type_='XSS', url=form.url.data, use_login=True)
                 return render_template('user/injection_with-login.html', form=form, errors=errors, action=url_for('user.xss_login'), title='XSS - With Login')
             return redirect(url_for('user.xss_login'))
         flash('Something wrong in your form. Correct these errors and sent form again',
@@ -136,6 +139,7 @@ def xss_login():
 @user.route('/xss/without-login', methods=['GET', 'POST'])
 @login_required
 @user_only
+@active_only
 def xss_nologin():
     form = InjectionForm()
 
@@ -143,7 +147,7 @@ def xss_nologin():
         if form.validate_on_submit():
             xss = XSS()
             errors = xss.run(form.url.data, form.base_url.data)
-            add_attack(type_='XSS',url=form.url.data,use_login=False)
+            add_attack(type_='XSS', url=form.url.data, use_login=False)
             return render_template('user/injection_without-login.html', form=form, errors=errors, action=url_for('user.xss_nologin'), title='XSS - Without Login')
         flash('Something wrong in your form. Correct these errors and sent form again .',
               category='danger')

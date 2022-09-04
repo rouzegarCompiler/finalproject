@@ -1,4 +1,4 @@
-from flask import redirect, url_for
+from flask import redirect, url_for, flash
 
 from flask_login import current_user
 
@@ -26,7 +26,18 @@ def no_login(func):
         return func(*args, **kwargs)
     return wrapper
 
-def add_attack(type_,url,use_login):
-    attack = AttackWeb(type_=type_,url=url,use_login=use_login)
+
+def active_only(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if not current_user.active:
+            flash('Admin restricted you to use this page .', category='warning')
+            return redirect(url_for('user.index'))
+        return func(*args, **kwargs)
+    return wrapper
+
+
+def add_attack(type_, url, use_login):
+    attack = AttackWeb(type_=type_, url=url, use_login=use_login)
     attack.attacker = current_user
     db.session.commit()
