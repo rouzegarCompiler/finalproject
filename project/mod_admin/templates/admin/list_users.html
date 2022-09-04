@@ -32,7 +32,8 @@
                             {% include 'admin/includes/activation_modal.html' %}
                             <button data-bs-toggle="modal" data-bs-target="#Activate-{{ user.id }}" class="btn btn-success m-1">Activate</button>
                             {% endif %}
-                            <button class="btn btn-primary">Report</button>
+                            {% include 'admin/includes/report_modal.html' %}
+                            <button data-bs-toggle="modal" data-bs-target="#Report-{{ user.id }}" class="btn btn-primary m-1">Report</button>
                         </td>
                     </tr>
                     {% endfor %}

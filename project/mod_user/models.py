@@ -1,4 +1,3 @@
-from email.policy import default
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from project import db
@@ -39,5 +38,5 @@ class AttackWeb(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     type_ = db.Column(db.String(length=32), nullable=False)
     url = db.Column(db.String(length=200), nullable=False)
-    user_login = db.Column(db.Boolean(), nullable=False, default=False)
+    use_login = db.Column(db.Boolean(), default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

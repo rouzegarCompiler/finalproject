@@ -1,0 +1,50 @@
+<div class="modal fade" id="Report-{{ user.id }}" aria-labelledby="ReportLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content" id="active-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ReportLabel">Report - {{ user.fname }} {{user.lname}}</h5>
+                <button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">URL</th>
+                            <th scope="col">Use Login</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if user.attacks %}
+                            {% set index = namespace(value=0) %}
+                            {% for attack in user.attacks %}
+                            {% set index.value = index.value + 1 %}
+                                <tr>
+                                    <th>{{ index.value }}</th>
+                                    <td>{{ attack.type_ }}</td>
+                                    <td>{{ attack.url }}</td>
+                                    <td>
+                                        {% if attack.use_login %}
+                                            Yes
+                                        {% else %}
+                                            No
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %} 
+                        {% else %}
+                        <tr>
+                            <p>No attacks found .</p>
+                        </tr>
+                        {% endif %}                    
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
