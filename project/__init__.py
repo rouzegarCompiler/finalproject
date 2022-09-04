@@ -6,8 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+import os
+
 app = Flask(__name__)
-app.config.from_object(Development)
+if os.environ.get('DEBUG') == '0':
+    app.config.from_object(Production)
+else:
+    app.config.from_object(Development)
 
 # initilize dependencies
 db = SQLAlchemy(app)
