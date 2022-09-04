@@ -84,3 +84,8 @@ def deactivate_user(id):
 @admin_only
 def report_user(id):
     return 'report user'
+
+@admin.route('/vulnweb')
+@login_required
+def vuln_web():
+    return render_template('admin/vulnweb.html',title='Web Vulnerabilities')

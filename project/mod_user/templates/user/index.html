@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">SQL Injection</h5>
                     <p class="card-text">SQL injection usually occurs when you ask a user for input, like their username/userid, and instead of a name/id, the user gives you an SQL statement that you will unknowingly run on your database.</p>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between gap-1">
                         <a href="{{ url_for('user.sqlinjection_login') }}" class="btn btn-primary mb-1 mb-lg-0 " >SQL Injection - With login !</a>
                         <a href="{{ url_for('user.sqlinjection_nologin') }}" class="btn btn-primary mb-1 mb-lg-0 " >SQL Injection - Without login !</a>
                     </div>
@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <h5 class="card-title">XSS</h5>
                     <p class="card-text">Cross-site scripting (XSS) is a type of security vulnerability that can be found in some web applications. XSS attacks enable attackers to inject client-side scripts into web pages viewed by other users.</p>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between gap-1">
                         <a href="{{ url_for('user.xss_login') }}" class="btn btn-primary mb-1 mb-lg-0 " >XSS - With login !</a>
                         <a href="{{ url_for('user.xss_nologin') }}" class="btn btn-primary mb-1 mb-lg-0 " >XSS - Without login !</a>
                     </div>

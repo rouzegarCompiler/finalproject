@@ -1,0 +1,37 @@
+{% extends 'user/base.html' %}
+
+{% block content_bp %}
+<style>
+    .card-img-top {
+    width: 100%;
+    min-height: 25vw;
+    object-fit: cover;
+}
+</style>
+<div class="container">
+    <div class="row my-3 g-3">
+        <div class="col-12 col-lg-6 d-flex align-items-stretch">
+            <div class="card" >
+                <img src="{{ url_for('static',filename='img/bwapp.png') }}" class="card-img-top" alt="bWAPP">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">bWAPP Aplication</h5>
+                  <p class="card-text">bWAPP, or a buggy web application, is a free and open source deliberately insecure web application.
+                    It helps security enthusiasts, developers and students to discover and to prevent web vulnerabilities.
+                    bWAPP prepares one to conduct successful penetration testing and ethical hacking projects.</p>
+                  <a href="http://localhost:81/" class="btn btn-primary mt-auto">Go to bWAPP</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 d-flex align-items-stretch">
+            <div class="card" >
+                <img src="{{ url_for('static',filename='img/dvwa.jpg') }}" class="card-img-top" alt="DVWA">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">DVWA Aplication</h5>
+                  <p class="card-text">Damn Vulnerable Web Application (DVWA) is a PHP/MySQL web application that is damn vulnerable. Its main goal is to be an aid for security professionals to test their skills and tools in a legal environment, help web developers better understand the processes of securing web applications and to aid both students & teachers to learn about web application security in a controlled class room environment.</p>
+                  <a href="http://localhost:82/" class="btn btn-primary mt-auto">Go to DVWA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

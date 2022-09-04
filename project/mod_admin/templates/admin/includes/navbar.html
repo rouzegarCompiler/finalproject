@@ -8,12 +8,15 @@
         </button>
 
         <div class="collapse navbar-collapse" id="usernavbar">
-            <ul class="navbar-nav me-auto mb-lg-0 mb-2">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a href="{{ url_for('admin.list_users') }}" class="nav-link">List Users</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('admin.vuln_web') }}" class="nav-link">Vulnerability applicacions</a>
+                </li>
             </ul>
-            <ul class="navbar-nav ms-auto mb-lg-0 mb-2">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a href="{{ url_for('admin.logout') }}" class="nav-link">Logout</a>
                 </li>

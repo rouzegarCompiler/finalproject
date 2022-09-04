@@ -1,26 +1,54 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
         <a href="{{ url_for('index') }}" class="navbar-brand">Home</a>
-        
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#usernavbar"
             aria-controls="usernavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="usernavbar">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-2">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        SQL Injection
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url_for('user.sqlinjection_login') }}">SQLi - With Login</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('user.sqlinjection_nologin') }}">SQLi - Without Login</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        XSS
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url_for('user.xss_login') }}">XSS - With Login</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('user.xss_nologin') }}">XSS - Without Login</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('user.vuln_web') }}" class="nav-link">Vulnerability applicacions</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
                 {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a href="{{ url_for('user.logout') }}" class="nav-link">Logout</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('user.logout') }}" class="nav-link">Logout</a>
+                </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a href="{{ url_for('user.login') }}" class="nav-link">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('user.register') }}" class="nav-link">Register</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('user.login') }}" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('user.register') }}" class="nav-link">Register</a>
+                </li>
                 {% endif %}
+
+
             </ul>
         </div>
 

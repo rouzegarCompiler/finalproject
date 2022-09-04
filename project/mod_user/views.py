@@ -141,7 +141,13 @@ def xss_nologin():
             xss = XSS()
             errors = xss.run(form.url.data, form.base_url.data)
             return render_template('user/injection_without-login.html', form=form, errors=errors, action=url_for('user.xss_nologin'), title='XSS - Without Login')
-        flash('Something wrong in your form. Correct these errors and sent form again',
+        flash('Something wrong in your form. Correct these errors and sent form again .',
               category='danger')
 
     return render_template('user/injection_without-login.html', form=form, action=url_for('user.xss_nologin'), title='XSS - Without Login')
+
+
+@user.route('/vulnweb')
+@login_required
+def vuln_web():
+    return render_template('user/vulnweb.html',title='Web Vulnerabilities')
